@@ -15,7 +15,7 @@
 
     <ul>
         <% todos.forEach(function(todo) { %>
-            <li><%= todo.text %> - <%= todo.body %> <a href="#" class="delete-todo">Delete</a></li>
+            <li><%= todo.text %> - <%= todo.body %> <a data-id="<%= todo._id %>" href="#" class="delete-todo">Delete</a></li>
         <% }) %>
     </ul>
 <% include ../views/partials/footer %>

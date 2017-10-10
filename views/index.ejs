@@ -1,10 +1,21 @@
 <% include ../views/partials/header %>
+    <form method="post" action="/todo/add">
+        <div>
+            <label>Todo name</label>
+            <input type="text" name="text" placeholder="Add Todo">
+        </div>
+        <div>
+            <label>Todo body</label>
+            <textarea name="body" placeholder="Add Todo"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
-Hello form index views
+    Hello form index views
 
-<ul>
-    <% todos.forEach(function(todo) { %>
-        <li><%= todo.text %> - <%= todo.body %></li>
-    <% }) %>
-</ul>
+    <ul>
+        <% todos.forEach(function(todo) { %>
+            <li><%= todo.text %> - <%= todo.body %> <a href="#" class="delete-todo">Delete</a></li>
+        <% }) %>
+    </ul>
 <% include ../views/partials/footer %>

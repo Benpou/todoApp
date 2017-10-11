@@ -66,7 +66,7 @@ app.post('/todo/add', (req, res, next) => {
 });
 
 app.delete('/todo/delete/:id', (req, res, next) => {
-    const query = {_id: ObjectID(req.params.id)};
+    const query = {_id: ObjectID(req.params.id)}
     Todos.deleteOne(query, (err, response) => {
         if (err) {
             return console.log(err);
@@ -76,3 +76,35 @@ app.delete('/todo/delete/:id', (req, res, next) => {
     });
 });
 
+app.get('/todo/edit/:id', (req, res, next) => {
+    const query = {_id: ObjectID(req.params.id)}
+    Todos.find(query).next((err, todo) => {
+        if (err) {
+            return console.log(err);
+        }
+        res.render('edit', {
+            todo: todo
+        });
+    });
+});
+
+app.post('/todo/edit/:id', (req, res, next) => {
+    const query = {_id: ObjectID(req.params.id)}
+
+    // Create todo object
+    const todo = {
+        text: req.body.text,
+        body: req.body.body
+    }
+
+    //update
+    Todos.updateOne(query, {$set:todo}, (err, result) => {
+    if (err) {
+        return console.log(err);
+    }
+    console.log('Todo updated....');
+    res.redirect('/');
+
+    });
+
+});

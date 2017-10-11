@@ -6,7 +6,8 @@
         </div>
         <div>
             <label>Todo body</label>
-            <textarea name="body" placeholder="Add Todo"></textarea>
+            <textarea name="body" placeholder="Add body"></textarea>
+
         </div>
         <button type="submit">Submit</button>
     </form>
@@ -15,7 +16,11 @@
 
     <ul>
         <% todos.forEach(function(todo) { %>
-            <li><%= todo.text %> - <%= todo.body %> <a data-id="<%= todo._id %>" href="#" class="delete-todo">Delete</a></li>
+            <li><%= todo.text %> - <%= todo.body %>
+                <a data-id="<%= todo._id %>" href="#" class="delete-todo">Delete</a>
+                <a href="/todo/edit/<%= todo._id %>" >Edit</a>
+
+            </li>
         <% }) %>
     </ul>
 <% include ../views/partials/footer %>
